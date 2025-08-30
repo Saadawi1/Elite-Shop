@@ -76,12 +76,12 @@ function addToCart(product) {
   const existing = cart.find((item) => item.id === product.id);
 
   if (existing) {
-    existing.quantity++;
+    existing.quantity = Number(existing.quantity) + 1;
   } else {
     cart.push({ 
       id: product.id,
       title: product.title,
-      price: product.price,
+      price: Number(product.price), // تأكيد انه رقم
       image: product.imageCover,
       quantity: 1
     });
@@ -92,6 +92,8 @@ function addToCart(product) {
   showToast(`${product.title} added to cart`);
 }
 
+
+// ------------------ Update Cart UI ------------------
 // ------------------ Update Cart UI ------------------
 function updateCartUI() {
   const cartItemsContainer = document.getElementById("cartItems");
@@ -101,7 +103,7 @@ function updateCartUI() {
   let total = 0;
 
   cart.forEach((item, index) => {
-    total += item.price * item.quantity;
+    total += Number(item.price) * Number(item.quantity);
 
     const div = document.createElement("div");
     div.className = "flex justify-between items-center border-b pb-2";
@@ -111,7 +113,7 @@ function updateCartUI() {
         <img src="${item.image}" class="w-12 h-12 rounded object-cover"/>
         <div>
           <h4 class="text-sm font-semibold">${item.title}</h4>
-          <p class="text-xs text-gray-500">$${item.price}</p>
+          <p class="text-xs text-gray-500">$${Number(item.price).toFixed(2)}</p>
         </div>
       </div>
       <div class="flex items-center space-x-2">
@@ -131,7 +133,7 @@ function updateCartUI() {
 // ------------------ Update Cart Count ------------------
 function updateCartCount() {
   const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById("cartCountDesktop").textContent = totalQty;
+document.getElementById("cartCountDesktop").textContent = totalQty;
   document.getElementById("cartCountMobile").textContent = totalQty;
 }
 
