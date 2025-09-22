@@ -51,7 +51,7 @@ function renderProducts(list) {
       <img src="${p.imageCover}" alt="${p.title}" class="w-full h-52 object-contain bg-cream-white"/>
       <div class="p-4 flex flex-col">
         <h4 class="text-gray-800 font-semibold text-lg mb-2 truncate">${p.title}</h4>
-        <p class="text-warm-orange font-bold mb-2">$${p.price.toFixed(2)}</p>
+        <p class="text-warm-orange font-bold mb-2">EGP${p.price.toFixed(2)}</p>
         <div class="text-yellow-400 text-sm mb-4">★ ${p.ratingsAverage || 0} (${p.ratingsQuantity || 0})</div>
         <button class="mt-auto bg-warm-orange hover:bg-light-orange text-white py-2 rounded-xl font-medium transition">Add to Cart</button>
       </div>
@@ -228,4 +228,5 @@ backToTop.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
 
